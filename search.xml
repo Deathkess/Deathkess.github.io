@@ -3,6 +3,61 @@
   
     
     <entry>
+      <title><![CDATA[通过特征方程求斐波那契数列的通项公式]]></title>
+      <url>/2020/01/15/%E9%80%9A%E8%BF%87%E7%89%B9%E5%BE%81%E6%96%B9%E7%A8%8B%E6%B1%82%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9A%84%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<p>特征方程是为研究相应的数学对象而引入的一些等式，它因数学对象不同而不同，包括数列特征方程、矩阵特征方程、微分方程特征方程、积分方程特征方程等等。<br>​    数列的特征方程：</p>
+<p>一个数列：<br>$$<br>x_{n+2} = c_1x_{n+1}+c_2x_n<br>$$<br>设有r,s使<br>$$<br>x_{n+2}-rx_{n+1} = s(x_{n+1}-rx_n)<br>$$<br>所以<br>$$<br>x_{n+2} = (s+r)x_{n+1}-srx_n<br>$$<br>得<br>$$<br>c_1 = s+r<br>$$</p>
+<p>$$<br>c_2 = -sr<br>$$</p>
+<p>削去s就导出特征方程式<br>$$<br>r^2 = c_1r+c_2<br>$$</p>
+<p>以线性递推数列通项求法为例，这里说明特征方程的应用。</p>
+<h4 id="一阶递推"><a href="#一阶递推" class="headerlink" title="一阶递推"></a>一阶递推</h4><p>若数列{$a_n$}的递推公式为$a_{n+1}=pa_n+q(p\neq0)$,则有</p>
+<p>1）当p=1时，$a_n=a_1+(n-1)q$;</p>
+<p>2）当$p\neq1$时，$a_n=(a_1-{q\over1-p}）p^{n-1}+{q\over1-p}$.</p>
+<figure class="image-box">
+                <img src="/.com//image-1.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="二阶齐次线性递推数列的通项公式"><a href="#二阶齐次线性递推数列的通项公式" class="headerlink" title="二阶齐次线性递推数列的通项公式"></a>二阶齐次线性递推数列的通项公式</h4><p>若二阶齐次线性递推数列的递推关系为$a_{n+1}=pa_n+qa_{n-1}$,其中$p\neq0$,$q\neq0$,则有</p>
+<p>1）当$p^2+4q=0$时，$a_n=a_1\beta^{n-1}+(n-1)(a_2-{\beta}a_1)\beta^{n-2}$,其中$\beta={q\over2}$;</p>
+<p>2）当$p^2+4q&gt;0$时，$a_n=(a_1-{a_2-{\alpha}a_1\over\beta-\alpha}){\cdot}\alpha^{n-1}+{a_2-{\alpha}a_1\over\beta-\alpha}\cdot\beta^{n-1}$,其中$\alpha={p-\sqrt{p^2+4q}\over2}$,$\beta={p+\sqrt{p^2+4q}\over2}$;</p>
+<p>3）当$p^2+4q&lt;0$时，$a_n=(a_1-{a_2-{\alpha}a_1\over\beta-\alpha}){\cdot}\alpha^{n-1}+{a_2-{\alpha}a_1\over\beta-\alpha}\cdot\beta^{n-1}$,其中$\alpha={p-i\sqrt{-p^2-4q}\over2}$,$\beta={p+i\sqrt{-p^2-4q}\over2}$.</p>
+<p>证明 令$a_{n+1}-{\alpha}a_n=\beta(a_n-{\alpha}a_{n-1})$,则有$a_{n+1}=(\alpha+\beta)a_n-\alpha{\beta}a_{n-1}$.</p>
+<p>将此式与已知递推公式$a_{n+1}=pa_n+qa_{n-1}$比较，有$\begin{cases} \alpha+\beta=p,\\alpha\beta=-q \end{cases}$.</p>
+<figure class="image-box">
+                <img src="/.com//image-2.png" alt title class>
+                <p></p>
+            </figure>
+
+<figure class="image-box">
+                <img src="/.com//image-3.png" alt title class>
+                <p></p>
+            </figure>
+
+<p>例：求斐波那契数列0，1，1，2，3，5，8，13，21，34，55，…的通项公式</p>
+<p>它的递归定义式为$F(n)=\begin{cases} 1 &amp;\text{n=0,1} \ F(n-1)+F(n-2) &amp;\text{n&gt;1} \end{cases}$</p>
+<p>所以线性递推数列的特征方程为：$x^2=x+1$,</p>
+<p>解得 $x_1={1+\sqrt{5}\over2}$,$x_2={1-\sqrt{5}\over2}$.</p>
+<p>则 $F(n)=c_1x_1^n+c_2x_2^n$.</p>
+<p>因为 $F(1)=F(2)=1$,</p>
+<p>所以 $c_1x_1+c_2x_2=c_1x_1^2+c_2x_2^2$.</p>
+<p>解得：$c_1={1\over\sqrt{5}}$,$c_2=-{1\over\sqrt{5}}$.</p>
+<p>所以  $F(n)={1\over\sqrt{5}}\left[\left({1+\sqrt{5}\over2}\right)^n-\left({1-\sqrt{5}\over2}\right)^n \right]$.</p>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class main &#123;</span><br><span class="line">	//公式法计算斐波那契数列第n项</span><br><span class="line">	public static void main(String []args) &#123;</span><br><span class="line">		Scanner sc = new Scanner(System.in);</span><br><span class="line">		int n = sc.nextInt();</span><br><span class="line">		double result = Fibonacci(n);</span><br><span class="line">		System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line">	public static double Fibonacci(int n) &#123;</span><br><span class="line">		double result = (1/Math.sqrt(5))*(Math.pow(((1+Math.sqrt(5))/2),n)-Math.pow(((1-Math.sqrt(5))/2),n));</span><br><span class="line">		return Math.round(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[人工智能——马科夫决策过程]]></title>
       <url>/2019/10/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%94%E2%80%94%E9%A9%AC%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</url>
       <content type="html"></content>
